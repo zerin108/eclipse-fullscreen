@@ -6,7 +6,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-public class EscAction implements IWorkbenchWindowActionDelegate {
+public class EscActionDelegate implements IWorkbenchWindowActionDelegate {
 
 	public void run(IAction action) {
 		if (FullScreenActionDelegate.fullscreen) {

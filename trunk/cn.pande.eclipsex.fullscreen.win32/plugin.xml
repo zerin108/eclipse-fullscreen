@@ -4,9 +4,9 @@
    <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
-            description="Full screen support for eclipse"
+            description="%fullScreenActionSetDesc"
             id="cn.pande.eclipsex.fullscreen.actionSet"
-            label="Full Screen"
+            label="%fullScreenActionSet"
             visible="true">
          <action
                class="cn.pande.eclipsex.fullscreen.FullScreenActionDelegate"
@@ -17,10 +17,10 @@
                style="push">
          </action>
          <action
-               class="cn.pande.eclipsex.fullscreen.EscAction"
+               class="cn.pande.eclipsex.fullscreen.EscActionDelegate"
                definitionId="cn.pande.eclipsex.fullscreen.escCommand"
                id="cn.pande.eclipsex.fullscreen.escAction"
-               label="EscAction">
+               label="%esc">
          </action>
       </actionSet>
    </extension>
@@ -28,15 +28,15 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.ui.category.window"
-            description="set window full screen"
+            description="%fullScreenCommandDesc"
             id="cn.pande.eclipsex.fullscreen.fullscreenCommand"
-            name="Full Screen">
+            name="%fullScreenCommand">
       </command>
       <command
             categoryId="org.eclipse.ui.category.window"
-            description="Exits full screen mode"
+            description="%escCommandDesc"
             id="cn.pande.eclipsex.fullscreen.escCommand"
-            name="Exit Full Screen">
+            name="%escCommand">
       </command>
    </extension>
    <extension
@@ -45,7 +45,7 @@
             commandId="cn.pande.eclipsex.fullscreen.fullscreenCommand"
             contextId="org.eclipse.ui.globalScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M2+L">
+            sequence="M1+M2+M">
       </key>
       <key
             commandId="cn.pande.eclipsex.fullscreen.escCommand"
