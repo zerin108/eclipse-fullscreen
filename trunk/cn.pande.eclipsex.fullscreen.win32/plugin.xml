@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Full screen support for eclipse"
+            id="cn.pande.eclipsex.fullscreen.actionSet"
+            label="Full Screen"
+            visible="true">
+         <action
+               class="cn.pande.eclipsex.fullscreen.FullScreenActionDelegate"
+               definitionId="cn.pande.eclipsex.fullscreen.fullscreenCommand"
+               id="cn.pande.eclipsex.fullscreen.fullscreenAction"
+               label="&amp;Full Screen"
+               menubarPath="window/additions"
+               style="push">
+         </action>
+         <action
+               class="cn.pande.eclipsex.fullscreen.EscAction"
+               definitionId="cn.pande.eclipsex.fullscreen.escCommand"
+               id="cn.pande.eclipsex.fullscreen.escAction"
+               label="EscAction">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.ui.category.window"
+            description="set window full screen"
+            id="cn.pande.eclipsex.fullscreen.fullscreenCommand"
+            name="Full Screen">
+      </command>
+      <command
+            categoryId="org.eclipse.ui.category.window"
+            description="Exits full screen mode"
+            id="cn.pande.eclipsex.fullscreen.escCommand"
+            name="Exit Full Screen">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="cn.pande.eclipsex.fullscreen.fullscreenCommand"
+            contextId="org.eclipse.ui.globalScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+L">
+      </key>
+      <key
+            commandId="cn.pande.eclipsex.fullscreen.escCommand"
+            contextId="org.eclipse.ui.globalScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ESC">
+      </key>
+   </extension>
+
+</plugin>
