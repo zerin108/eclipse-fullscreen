@@ -1,21 +1,5 @@
 开发笔记
 
-基本功能完成，有待改善！
+窗口全屏
 
-TODO
-
-跨平台的支持
-
-问题
-
-全屏，回复， Editor和View的TitleBar消失了.
-
-点Menu和用Ctrl+Shift+L有区别，有时得点两次才行.
-诊断: 
-	点击Menu和用Key accelerator所用的IWorkbenchWindowActionDelegate
-	的Instance是不同的， 所以我们不能依靠在IWorkbenchWindowActionDelegate的
-	Instance中保存信息。但是可以作为static保存。
-
-
-
-
+ESC退出
