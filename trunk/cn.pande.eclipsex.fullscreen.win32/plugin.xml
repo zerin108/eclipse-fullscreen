@@ -12,7 +12,7 @@
                class="cn.pande.eclipsex.fullscreen.FullScreenActionDelegate"
                definitionId="cn.pande.eclipsex.fullscreen.fullscreenCommand"
                id="cn.pande.eclipsex.fullscreen.fullscreenAction"
-               label="&amp;Full Screen"
+               label="%fullScreen"
                menubarPath="window/additions"
                style="push">
          </action>
