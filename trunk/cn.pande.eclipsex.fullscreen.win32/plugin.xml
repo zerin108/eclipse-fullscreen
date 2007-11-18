@@ -45,7 +45,7 @@
             commandId="cn.pande.eclipsex.fullscreen.fullscreenCommand"
             contextId="org.eclipse.ui.globalScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M2+M">
+            sequence="M1+M3+Z">
       </key>
       <key
             commandId="cn.pande.eclipsex.fullscreen.escCommand"
