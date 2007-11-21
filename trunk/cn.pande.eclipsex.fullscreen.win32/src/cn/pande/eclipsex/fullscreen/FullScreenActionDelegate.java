@@ -35,9 +35,13 @@
  */
 package cn.pande.eclipsex.fullscreen;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
@@ -57,6 +61,7 @@ public class FullScreenActionDelegate implements IWorkbenchWindowActionDelegate 
 	static Rectangle wasBounds;
 	static boolean wasMaximized;
 	static IWorkbenchWindow window;
+	static List<Control> controls = new ArrayList<Control>();
 
 	public void init(IWorkbenchWindow window) {
 		FullScreenActionDelegate.window = window;
@@ -71,19 +76,27 @@ public class FullScreenActionDelegate implements IWorkbenchWindowActionDelegate 
 			return;
 
 		Shell mainShell = window.getShell();
-		Control[] children = mainShell.getChildren();
-		for (Control child : children) {
-			if (!child.getClass().equals(Composite.class)) {
-				child.setVisible(!fullscreen);
-			}
-		}
-
 		// show/hide menubar
 		if (fullscreen) {
 			menuBar = mainShell.getMenuBar();
 			mainShell.setMenuBar(null);
+			Control[] children = mainShell.getChildren();
+			for (Control child : children) {
+				if (child.getClass().equals(Canvas.class))
+					continue;
+				if (child.getClass().equals(Composite.class))
+					continue;
+
+				child.setVisible(false);
+				System.out.println(child.getClass().getName());
+				controls.add(child);
+			}
 		} else {
 			mainShell.setMenuBar(menuBar);
+			for (Control control : controls) {
+				control.setVisible(true);
+			}
+			controls.clear();
 		}
 
 		if (fullscreen) { // remember things for restore
