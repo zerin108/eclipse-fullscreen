@@ -1,3 +1,6 @@
+/*
+ * $Log: Win32.java,v $
+ */
 package cn.pande.eclipsex.fullscreen.win32;
 
 import org.eclipse.swt.SWT;
@@ -49,9 +52,31 @@ public final class Win32 {
 		if (fullscreen) {
 			// hide border handler
 			styleFlags &= ~(WS_DLGFRAME | OS.WS_THICKFRAME);
+
 			// set shell bounds as full screen
-			Rectangle rect = shell.getDisplay().getBounds();
-			shell.setBounds(rect);
+			if (OS.GetSystemMetrics(OS.SM_CMONITORS) < 2) {
+				int width = OS.GetSystemMetrics(OS.SM_CXSCREEN);
+				int height = OS.GetSystemMetrics(OS.SM_CYSCREEN);
+				shell.setBounds(0, 0, width, height);
+			} else {
+				int pwidth = OS.GetSystemMetrics(OS.SM_CXSCREEN);
+				int pheight = OS.GetSystemMetrics(OS.SM_CYSCREEN);
+
+				int x = OS.GetSystemMetrics(OS.SM_XVIRTUALSCREEN);
+				int y = OS.GetSystemMetrics(OS.SM_YVIRTUALSCREEN);
+				int width = OS.GetSystemMetrics(OS.SM_CXVIRTUALSCREEN);
+				int height = OS.GetSystemMetrics(OS.SM_CYVIRTUALSCREEN);
+				Rectangle b = shell.getBounds();
+				int x0 = b.x + b.width / 2;
+				int y0 = b.y + b.height / 2;
+				if (x0 < pwidth && y0 < pheight) {
+					// in primary monitor
+					shell.setBounds(0, 0, pwidth, pheight);
+				} else {
+					// in second monitor
+					shell.setBounds(x + pwidth, y, width - pwidth, height);
+				}
+			}
 		} else {
 			// show border handler
 			styleFlags |= (WS_DLGFRAME | OS.WS_THICKFRAME);
