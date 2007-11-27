@@ -76,8 +76,8 @@ public class FullScreenActionDelegate implements IWorkbenchWindowActionDelegate 
 			return;
 
 		Shell mainShell = window.getShell();
-		// show/hide menubar
 		if (fullscreen) {
+			// hide menubar, toolbar and statusbar
 			menuBar = mainShell.getMenuBar();
 			mainShell.setMenuBar(null);
 			Control[] children = mainShell.getChildren();
@@ -86,12 +86,11 @@ public class FullScreenActionDelegate implements IWorkbenchWindowActionDelegate 
 					continue;
 				if (child.getClass().equals(Composite.class))
 					continue;
-
 				child.setVisible(false);
-				System.out.println(child.getClass().getName());
 				controls.add(child);
 			}
 		} else {
+			// show menubar, toolbar and statusbar
 			mainShell.setMenuBar(menuBar);
 			for (Control control : controls) {
 				control.setVisible(true);
