@@ -82,6 +82,8 @@ public class FullScreenActionDelegate implements IWorkbenchWindowActionDelegate 
 			mainShell.setMenuBar(null);
 			Control[] children = mainShell.getChildren();
 			for (Control child : children) {
+				if (!child.isVisible())
+					continue;
 				if (child.getClass().equals(Canvas.class))
 					continue;
 				if (child.getClass().equals(Composite.class))
